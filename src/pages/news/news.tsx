@@ -2,12 +2,12 @@ import React from "react";
 import { useNewsApiQuery, NewsApiResponse } from "../../queries/newsApiQuery";
 import { NewsCard } from "../../components/newsCard/newsCard";
 import Loading from "../../components/Loading/loading";
-import { useNewsAiQuery  } from "../../queries/newsAiQuery";
+// import { useNewsAiQuery  } from "../../queries/newsAiQuery";
 
 const News = () => {
   const { data: articles, isLoading } = useNewsApiQuery();
-  const keyword = "News"
-  const fromDate = "2024-2-28";
+  // const keyword = "News"
+  // const fromDate = "2024-2-28";
   // const { data:newArticle } = useNewsAiQuery({keyword, fromDate});
 
   return (
