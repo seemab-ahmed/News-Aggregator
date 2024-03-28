@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { ReactComponent as CrossIcon } from "../../images/crossIcon.svg";
-import { searchNewsAtom } from '../../atoms/searchNewsAtom';
-import { useRecoilState } from 'recoil';
+import { searchNewsAtom } from "../../atoms/searchNewsAtom";
+import { useRecoilState } from "recoil";
 
 export const Search = () => {
   const [, setNewsSearch] = useRecoilState(searchNewsAtom);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -19,7 +19,7 @@ export const Search = () => {
   };
 
   const handleClear = () => {
-    setSearchTerm('');
+    setSearchTerm("");
     setNewsSearch((prevNewsSearch) => ({
       ...prevNewsSearch,
       keyword: "News",
