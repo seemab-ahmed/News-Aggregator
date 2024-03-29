@@ -7,6 +7,8 @@ export const searchNewsAtom = atom({
     total: 20,
     pageNumber: 1,
     pageSize: 10,
-    fromDate: "2024-2-28",
+    fromDate: "2024-03-20",
+    source: '',
+    category:'',
   },
 });

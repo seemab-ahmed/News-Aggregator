@@ -26,15 +26,15 @@ const mapArticleData = (article: any): NewsAiResponse => ({
 });
 
 export const useNewsAiQuery = () => {
-  const { keyword, fromDate } = useRecoilValue(searchNewsAtom);
+  const { keyword, fromDate , pageNumber } = useRecoilValue(searchNewsAtom);
 
-  return useQuery(['newsApiData', keyword, fromDate], async () => {
+  return useQuery(['newsApiData', keyword, fromDate , pageNumber], async () => {
     const response = await axios.get(`${process.env.REACT_APP_NEWS_API_AI_URL}`, {
       params: {
         "action": "getArticles",
         "keyword": keyword,
-        "articlesPage": 1,
-        "articlesCount": 6,
+        "articlesPage": pageNumber,
+        "articlesCount": 60,
         "articlesSortBy": "date",
         "articlesSortByAsc": false,
         "articlesArticleBodyLen": -1,
@@ -47,7 +47,9 @@ export const useNewsAiQuery = () => {
         "forceMaxDataTimeWindow": 31
       },
     });
-    return response.data.articles.results?.map(mapArticleData);
+    return response.data.articles.results?.map(mapArticleData)
+    
+    ;
   }, {
     enabled: !!keyword,
     staleTime: Infinity,
