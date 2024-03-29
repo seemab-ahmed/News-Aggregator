@@ -63,8 +63,8 @@ const News: React.FC<NewsProps> = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto px-4 pt-6 pb-4">
-      <div className="flex justify-end w-full pb-4 gap-4">
-        <select value={selectedSource} onChange={handleSelectSource} className="p-2 bg-white border border-gray-400 rounded-lg w-[250px] outline-none text-sm ">
+      <div className="flex justify-end w-full pb-4 gap-4 h-[60px]">
+        <select value={selectedSource} onChange={handleSelectSource} className="p-2 bg-white border border-gray-300 rounded-md w-[250px] outline-none text-sm ">
           <option value="">Select Source</option>
           {newsSource.map((source, index) => <option value={source} key={index} className="">{source}</option>)}
         </select>

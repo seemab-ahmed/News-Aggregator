@@ -20,7 +20,7 @@ const Pagination = () => {
   };
 
   return (
-    <div className="flex justify-center mt-4">
+    <div className="flex justify-center">
       <button
         className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-l focus:outline-none"
         onClick={goToPrevPage}

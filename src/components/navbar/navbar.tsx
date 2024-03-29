@@ -30,7 +30,7 @@ export const Navbar = () => {
             <nav className="flex space-x-3">
               {newsCategory.map((item, index) => (
                 <button
-                  className="text-sm leading-6 font-medium text-gray-500 focus:outline-none hover:text-indigo-900 transition ease-in-out duration-150 px-2 sm:px-5 py-2 hover:bg-[#3b82f6] rounded-md "
+                  className="text-sm  leading-6 font-medium text-gray-500 focus:outline-none hover:text-indigo-900 transition ease-in-out duration-150 px-2 sm:px-5 py-2 hover:bg-[#3b82f6] rounded-md "
                   key={index}
                   onClick={() => handleClick(item)}
                 >
