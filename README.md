@@ -15,7 +15,9 @@ If Docker is not installed on your machine, you can download and install it from
 Follow these steps to run the application using Docker:
 
 1- Clone this repository to your local machine:
-### `git clone https://github.com/seemab-ahmed/News-Aggregator.git`
+```bash
+git clone https://github.com/seemab-ahmed/News-Aggregator.git
+```
 
 2- Navigate to the project directory:
 ### `cd news-aggregator`
