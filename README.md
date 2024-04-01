@@ -38,6 +38,28 @@ To stop the running Docker container, use the following command:
 To remove the stopped container, use the following command:
 ### `docker rm mycontainer`
 
+## Running Without Docker
+
+If you prefer not to use Docker, you can run the application directly using Node.js. Follow these steps:
+
+1. **Install Node.js**: Ensure you have Node.js installed on your machine. You can download and install it from the [official Node.js website](https://nodejs.org/).
+
+2. **Install Dependencies**: Open a terminal or command prompt, navigate to the project directory, and run the following command to install the required dependencies:
+
+    ```
+    npm install
+    ```
+
+3. **Start the Application**: Once the dependencies are installed, you can start the application by running:
+
+    ```
+    npm start
+    ```
+
+4. **Access the Application**: Once the server is running, you can access the application by opening a web browser and navigating to [http://localhost:3000](http://localhost:3000).
+
+
+
 ### Additional Information
 If you encounter any issues or need further assistance, please contact seemab40615@gmail.com.
 For more information about NGINX, visit the NGINX Documentation.
