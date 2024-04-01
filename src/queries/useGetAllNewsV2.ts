@@ -1,22 +1,13 @@
-// Different Approach for fetching news form different data source using promise.all
 import { useQuery } from "react-query";
 import axios, { AxiosError } from "axios";
-
 import { searchNewsAtom } from "../atoms/searchNewsAtom";
 import { useRecoilValue } from "recoil";
+import { NewsResponseInterface } from "../type";
+import { mapGetNewsAiQueryData } from "./useGetNewsAiQuery";
+import { mapGetNewsAPiQueryData } from "./useNewsApiQuery";
+import { mapNyTimesApiQueryData } from "./useNyTimesApiQuery";
 
-interface Article {
-  id: string;
-  source: string;
-  author?: string;
-  title: string;
-  description: string;
-  url: string;
-  imageUrl: string;
-  date: string;
-}
-
-export const useNewsQuery = () => {
+export const useGetAllNewsV2 = () => {
   const { keyword, fromDate } = useRecoilValue(searchNewsAtom);
   const queryKey = ["news", keyword, fromDate];
 
@@ -30,7 +21,7 @@ export const useNewsQuery = () => {
     }
   };
 
-  const { data: queryResults, isLoading, isError } = useQuery<Article[], Error>(
+  const { data: queryResults, isLoading, isError } = useQuery<NewsResponseInterface[], Error>(
     queryKey,
     async () => {
       const [newsApiResponse, nyTimesResponse, newsApiAiResponse] = await Promise.all([
@@ -64,37 +55,11 @@ export const useNewsQuery = () => {
         }),
       ]);
 
-      const newsApiData: Article[] = newsApiAiResponse.articles.results.map((article: any) => ({
-        id: article.uri,
-        source: article.source.title,
-        author: article.author?.name,
-        title: article.title,
-        description: article.body,
-        url: article.url,
-        imageUrl: article.image,
-        date: article.date,
-      }));
+      const newsApiData: NewsResponseInterface[] = newsApiAiResponse.articles.results.map(mapGetNewsAiQueryData);
 
-      const nyTimesData: Article[] = nyTimesResponse.response.docs.map((article: any) => ({
-        id: article._id,
-        source: article.source,
-        title: article.headline.main,
-        description: article.lead_paragraph,
-        url: article.web_url,
-        imageUrl: `https://www.nytimes.com/${article?.multimedia[0]?.url}`,
-        date: article.pub_date,
-      }));
+      const nyTimesData: NewsResponseInterface[] = nyTimesResponse.response.docs.map(mapNyTimesApiQueryData);
 
-      const newsApiDataMapped: Article[] = newsApiResponse.articles.map((article: any) => ({
-        id: article.source.id,
-        source: article.source.name,
-        author: article.author,
-        title: article.title,
-        description: article.description,
-        url: article.url,
-        imageUrl: article.urlToImage,
-        date: article.publishedAt,
-      }));
+      const newsApiDataMapped: NewsResponseInterface[] = newsApiResponse.articles.map(mapGetNewsAPiQueryData);
 
       return [...newsApiData, ...nyTimesData, ...newsApiDataMapped];
     },{

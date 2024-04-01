@@ -1,8 +1,8 @@
-import { Navbar } from "../../components/navbar/navbar";
-import { Footer } from "../../components/footer/footer";
-import News from "../news/news";
+import { Navbar } from "../../features/navbar/navbar";
+import { Footer } from "../../features/footer/footer";
+import News from "../../features/news/news";
 
-export const HomePage = () => {
+export const HomePage = () => {  
   return (
     <>
       <Navbar />

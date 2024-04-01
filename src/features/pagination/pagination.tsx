@@ -2,7 +2,7 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import { searchNewsAtom } from '../../atoms/searchNewsAtom';
 
-const Pagination = () => {
+export const Pagination = () => {
   const [searchNews, setSearchNews] = useRecoilState(searchNewsAtom);
 
   const goToNextPage = () => {
@@ -42,4 +42,3 @@ const Pagination = () => {
   );
 };
 
-export default Pagination;

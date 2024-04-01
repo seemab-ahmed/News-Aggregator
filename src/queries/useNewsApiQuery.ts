@@ -1,20 +1,10 @@
-import axios from 'axios';
 import { useQuery } from 'react-query';
 import { searchNewsAtom } from '../atoms/searchNewsAtom';
 import { useRecoilValue } from 'recoil';
+import { NewsResponseInterface } from '../type';
+import { service } from '../service';
 
-export interface NewsApiResponse {
- id?: string | null;
- source?: string | null;
-  author?: string | null;
-  title: string;
-  description: string;
-  url?: string;
-  imageUrl: string;
-  date?: string;
-}
-
-const mapArticleData = (article: any): NewsApiResponse => ({
+export const mapGetNewsAPiQueryData = (article: any): NewsResponseInterface => ({
   id: article.source.id,
   source: article.source.name,
   author: article.author,
@@ -25,11 +15,21 @@ const mapArticleData = (article: any): NewsApiResponse => ({
   date: article.publishedAt,
 });
 
+
+const getNewsApi = async ({ params }: { params: any }) => {
+  const { data } = await service.get(
+    `${process.env.REACT_APP_NEWS_API_URL}`,
+    {
+      params,
+    }
+  );
+  return data;
+};
 export const useNewsApiQuery = () => {
   const { keyword, fromDate } = useRecoilValue(searchNewsAtom);
 
   return useQuery(['newsApiData', keyword, fromDate], async () => {
-    const response = await axios.get(`${process.env.REACT_APP_NEWS_API_URL}`, {
+    const response = await getNewsApi({
       params: {
         q: keyword,
         from: fromDate,
@@ -38,8 +38,9 @@ export const useNewsApiQuery = () => {
         page: 1,
         apiKey: process.env.REACT_APP_NEWS_API_KEY,
       },
-    });
-    return response.data.articles.map(mapArticleData);
+    })
+    console.log(response);
+    return response?.articles.map(mapGetNewsAPiQueryData);
   }, {
     enabled: !!keyword,
     staleTime: Infinity,

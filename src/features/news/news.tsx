@@ -1,17 +1,18 @@
 import React, { useState, useMemo } from "react";
-import { NewsApiResponse } from "../../queries/newsApiQuery";
 import { NewsCard } from "../../components/newsCard/newsCard";
 import Loading from "../../components/Loading/loading";
-import useCombineQuery from "../../queries/combineQuery";
+import useGetAllNews from "../../queries/useGetAllNews";
 import { searchNewsAtom } from "../../atoms/searchNewsAtom";
-import { useRecoilState } from "recoil";
-import Pagination from "../../components/pagination/pagination";
+import { useRecoilState , useRecoilValue } from "recoil";
+import {Pagination} from "../pagination/pagination";
+import { NewsResponseInterface } from "../../type";
 
 interface NewsProps {}
 
-const News: React.FC<NewsProps> = () => {
-  const { data: queryResults, isLoading } = useCombineQuery();
+export const News: React.FC<NewsProps> = () => {
+  const { data: queryResults, isLoading } = useGetAllNews();
   const [, setNewsSearch] = useRecoilState(searchNewsAtom);
+  const { source } = useRecoilValue(searchNewsAtom);
   const [selectedSource, setSelectedSource] = useState<string>('');
 
   const getAllSources = (articles: any): string[] => {
@@ -24,8 +25,8 @@ const News: React.FC<NewsProps> = () => {
     return Array.from(sourcesSet);
   };
 
-  const filterArticlesBySource = (articles: any, sourceName: string): NewsApiResponse[] => {
-    return sourceName ? articles.filter((article: NewsApiResponse) => article.source === sourceName) : articles;
+  const filterArticlesBySource = (articles: any, sourceName: string): NewsResponseInterface[] => {
+    return sourceName ? articles.filter((article: NewsResponseInterface) => article.source === sourceName) : articles;
   };
 
   const handleSelectSource = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -36,7 +37,7 @@ const News: React.FC<NewsProps> = () => {
 
   const newsSource = useMemo(() => getAllSources(queryResults), [queryResults]);
 
-  const filteredArticles = useMemo(() => filterArticlesBySource(queryResults, selectedSource), [queryResults, selectedSource]);
+  const filteredArticles = useMemo(() => filterArticlesBySource(queryResults, source), [queryResults, source]);
 
   const renderArticles = () => {
     if (isLoading) {
@@ -44,7 +45,7 @@ const News: React.FC<NewsProps> = () => {
     } else {
       return (
         <div className="flex flex-col flex-wrap md:flex-row md:-mx-2 gap-y-2">
-          {filteredArticles.length ? filteredArticles.map((article: NewsApiResponse, index: number) => (
+          {filteredArticles.length ? filteredArticles.map((article: NewsResponseInterface, index: number) => (
             <NewsCard
               title={article.title}
               description={article.description}

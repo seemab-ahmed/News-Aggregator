@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css"; // Import CSS
 import { useRecoilState } from "recoil";
 import { searchNewsAtom } from "../../atoms/searchNewsAtom";
 import { format } from "date-fns";
-const NewsDatePicker = () => {
+ export const NewsDatePicker = () => {
   const [, setSearchNews] = useRecoilState(searchNewsAtom);
   const [selectedDate, setSelectedDate] = useState<any>(new Date());
   const handleDateChange = (date: any) => {
@@ -30,4 +30,3 @@ const NewsDatePicker = () => {
   );
 };
 
-export default NewsDatePicker;

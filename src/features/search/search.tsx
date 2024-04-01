@@ -15,6 +15,7 @@ export const Search = () => {
     setNewsSearch((prevNewsSearch) => ({
       ...prevNewsSearch,
       keyword: searchTerm,
+      source:""
     }));
   };
 

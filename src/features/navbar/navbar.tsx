@@ -3,7 +3,7 @@ import { Search } from "../search/search";
 import logo from "../../images/logo.png";
 import { searchNewsAtom } from "../../atoms/searchNewsAtom";
 import { useRecoilState } from "recoil";
-import NewsDatePicker from "../newsDatePicker/newsDatePicker";
+import {NewsDatePicker} from "../newsDatePicker/newsDatePicker";
 
 export const Navbar = () => {
   const [, setNewsSearch] = useRecoilState(searchNewsAtom);

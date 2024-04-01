@@ -1,13 +1,13 @@
 import React from "react";
-import { NewsApiResponse } from "../../queries/newsApiQuery";
 import { truncateText } from "../../utils";
+import { NewsResponseInterface } from "../../type";
 
 export const NewsCard = ({
   imageUrl,
   title,
   description,
   url,
-}: NewsApiResponse) => {
+}: NewsResponseInterface) => {
   return (
     <div className="h-72 md:h-96 w-full md:w-1/2 lg:w-1/3 mb-4 lg:mb-0">
       <div className="h-72 md:h-96 block group relative mx-2 overflow-hidden shadow-lg">
