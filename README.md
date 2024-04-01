@@ -20,13 +20,19 @@ git clone https://github.com/seemab-ahmed/News-Aggregator.git
 ```
 
 2- Navigate to the project directory:
-### `cd news-aggregator`
+```bash
+cd news-aggregator
+```
 
 3- Build the Docker image using the provided Dockerfile:
-### `docker build -t myapp .`
+```bash
+docker build -t myapp .
+```
 
 4- Run a Docker container using the built image:
-### `docker run -d -p 3000:80 --name mycontainer myapp`
+```bash
+docker run -d -p 3000:80 --name mycontainer myapp
+```
 
 This command will start a container named "mycontainer" running the NGINX web server, and it will map port 80 of the container to port 80 on your local machine.
 
@@ -35,10 +41,14 @@ Open your web browser and navigate to  `http://localhost` to access the news agg
 ## Stopping the Application
 
 To stop the running Docker container, use the following command:
-### `docker stop mycontainer`
+```bash
+docker stop mycontainer
+```
 
 To remove the stopped container, use the following command:
-### `docker rm mycontainer`
+```bash
+docker rm mycontainer
+```
 
 ## Running Without Docker
 
