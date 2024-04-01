@@ -1,10 +1,11 @@
-# Getting Started with Create React App
+# News Aggregator Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple news aggregator application built using NGINX web server.
 
-## Available Scripts
+## Prerequisites
 
-In the project directory, you can run:
+Before you begin, ensure you have the following installed on your local machine:
+- Docker
 
 ### `npm start`
 
