@@ -5,7 +5,10 @@ This is a simple news aggregator application built using NGINX web server.
 ## Prerequisites
 
 Before you begin, ensure you have the following installed on your local machine:
-- Docker
+- [Docker](https://www.docker.com/get-started)
+
+If Docker is not installed on your machine, you can download and install it from the official Docker website:
+- [Docker Installation Guide](https://www.docker.com/get-started)
 
 ## Running the Application
 
