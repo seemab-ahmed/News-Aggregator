@@ -16,7 +16,7 @@ export const mapNyTimesApiQueryData = (article: any): NewsResponseInterface => (
 
 const getNewsApi = async ({ params }: { params: any }) => {
   const { data } = await service.get(
-    `${process.env.REACT_APP_NEWS_API_URL}`,
+    `${process.env.REACT_APP_NYTIMES_API_URL}`,
     {
       params,
     }

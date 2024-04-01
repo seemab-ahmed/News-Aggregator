@@ -16,7 +16,6 @@ export const mapGetNewsAiQueryData = ({
 }: NewsApiResponse) => ({
   id: uri,
   source: sourceTitle,
-
   // author: name,
   title: title,
   description: body,
@@ -55,10 +54,8 @@ export const useGetNewsAiQuery = () => {
           forceMaxDataTimeWindow: 31,
         },
       });
-
-      console.log(response?.articles.results);
       const data =
-        response?.articles?.data.results?.map(mapGetNewsAiQueryData);
+        response?.articles?.results?.map(mapGetNewsAiQueryData);
       return data;
     },
     {

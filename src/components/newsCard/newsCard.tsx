@@ -1,6 +1,7 @@
 import React from "react";
 import { truncateText } from "../../utils";
 import { NewsResponseInterface } from "../../type";
+import newsImage from "../../images/news.jpg";
 
 export const NewsCard = ({
   imageUrl,
@@ -12,7 +13,7 @@ export const NewsCard = ({
     <div className="h-72 md:h-96 w-full md:w-1/2 lg:w-1/3 mb-4 lg:mb-0">
       <div className="h-72 md:h-96 block group relative mx-2 overflow-hidden shadow-lg">
         <img
-          src={imageUrl}
+          src={imageUrl??newsImage}
           className="absolute z-0 object-cover w-full h-72 md:h-96"
           alt="News"
         />
